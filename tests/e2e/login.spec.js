@@ -1,22 +1,25 @@
 const { test, expect } = require('@playwright/test')
 const { LoginPage } = require('../pages/loginPage')
 const {Toast} = require('../pages/components')
+const {MoviesPage} = require('../pages/MoviesPage')
+
 
 let loginPage
 let toast
+let moviesPage
 
 test.beforeEach(({ page }) => {
     loginPage = new LoginPage(page)
     toast = new Toast(page)
+    moviesPage = new MoviesPage(page)
 })
 
 
 test('deve logar como administrador', async ({ page }) => {
     await loginPage.visit()
     await loginPage.fillForms("admin@zombieplus.com", "pwd123")
-    await loginPage.isLogged();
+    await moviesPage.isLogged();
 })
-
 
 test('nao deve logar com senha incorreta', async ({ page }) => {
     await loginPage.visit()
@@ -32,13 +35,11 @@ test('nao deve logar quando o email incorreto', async ({ page }) => {
     await loginPage.alertHaveText('Email incorreto')
 })
 
-
 test('nao deve logar quando o campo email não é preenchido', async ({ page }) => {
     await loginPage.visit()
     await loginPage.fillForms("", "abd1234")
     await loginPage.alertHaveText('Campo obrigatório')
 })
-
 
 test('nao deve logar quando a senha não é preenchida', async ({ page }) => {
     await loginPage.visit()

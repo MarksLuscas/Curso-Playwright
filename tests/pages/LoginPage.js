@@ -18,11 +18,6 @@ export class LoginPage {
         await this.page.getByText('Entrar').click()
     }
 
-    async isLogged(){
-        await this.page.waitForLoadState('networkidle') //garante que so vai passar para o prox step depois de todo trafico de rede ser finalizado
-        await expect(this.page).toHaveURL(/.*admin/) //vai procurar que a palavra admin esteja em algum ponto da url        
-    }
-
     async alertHaveText(text){
         const alert = this.page.locator('span[class$=alert]') //busca alguma classe que tenha o texto alert em alguma parte dela
         await expect(alert).toHaveText(text)
