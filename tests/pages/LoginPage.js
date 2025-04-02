@@ -19,8 +19,8 @@ export class LoginPage {
     }
 
     async isLogged(){
-        const logoutLink = this.page.locator('a[href="/logout"]')
-        await expect(logoutLink).toBeVisible()
+        await this.page.waitForLoadState('networkidle') //garante que so vai passar para o prox step depois de todo trafico de rede ser finalizado
+        await expect(this.page).toHaveURL(/.*admin/) //vai procurar que a palavra admin esteja em algum ponto da url        
     }
 
 }
