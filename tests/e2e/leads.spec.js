@@ -1,11 +1,15 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 const {LandingPage} = require('../pages/landingPage')
+const {Toast} = require('../pages/components')
 
 let landingPage
+let toast
+
 
 test.beforeEach(async({page})=>{
     landingPage = new LandingPage(page)
+    toast = new Toast(page)
 })
 
 
@@ -14,8 +18,7 @@ test('deve cadastrar um lead na tela de espera', async ({ page }) => {
   await landingPage.openLeadModal()
   await landingPage.submitLeadForm('Lucas Marques', 'Lucas@yahoo.com')
   const message = 'Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!'
-  await landingPage.toHaveText(message)
-
+  await toast.haveText(message)
 });
 
 
