@@ -25,3 +25,29 @@ test('nao deve logar com senha incorreta', async ({ page }) => {
     await toast.haveText(message)
 
 })
+
+test('nao deve logar quando o email incorreto', async ({ page }) => {
+    await loginPage.visit()
+    await loginPage.fillForms("www.lucas.com.br", "abd1234")
+    await loginPage.alertHaveText('Email incorreto')
+})
+
+
+test('nao deve logar quando o campo email não é preenchido', async ({ page }) => {
+    await loginPage.visit()
+    await loginPage.fillForms("", "abd1234")
+    await loginPage.alertHaveText('Campo obrigatório')
+})
+
+
+test('nao deve logar quando a senha não é preenchida', async ({ page }) => {
+    await loginPage.visit()
+    await loginPage.fillForms("lucas@gmail.com", "")
+    await loginPage.alertHaveText('Campo obrigatório')
+})
+
+test('nao deve logar quando nenhum campoo é preenchido', async ({ page }) => {
+    await loginPage.visit()
+    await loginPage.fillForms("", "")
+    await loginPage.alertHaveText(['Campo obrigatório', 'Campo obrigatório'])
+})
