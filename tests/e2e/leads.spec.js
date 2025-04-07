@@ -7,7 +7,6 @@ const {Toast} = require('../pages/components')
 let landingPage
 let toast
 
-
 test.beforeEach(async({page})=>{
     landingPage = new LandingPage(page)
     toast = new Toast(page)
@@ -24,6 +23,25 @@ test('deve cadastrar um lead na tela de espera', async ({ page }) => {
   await toast.haveText(message)
 });
 
+test('não deve cadastrar um lead com cadastro já existente', async ({ page , request}) => {
+  const randomName = faker.person.fullName()
+  const randomEmail = faker.internet.email()
+
+const newLead = await request.post('http://localhost:3333/leads',{
+    data: {
+      name: randomName,
+      email: randomEmail
+    }          
+  })
+
+  expect(newLead.ok()).toBeTruthy()
+
+  await landingPage.visit()
+  await landingPage.openLeadModal()
+  await landingPage.submitLeadForm(randomName, randomEmail)
+  const message = 'O endereço de e-mail fornecido já está registrado em nossa fila de espera.'
+  await toast.haveText(message)
+});
 
 test('nao deve cadastrar com um email incorreto', async ({ page }) => {
   await landingPage.visit()
