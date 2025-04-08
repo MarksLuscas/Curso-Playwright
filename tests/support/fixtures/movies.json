@@ -7,7 +7,7 @@
       "featured": true,
       "cover": "/caminho/para/guerra_mundial_z.png"
     },
-    "create": {
+    "Resident Evil: O Hospedeiro": {
       "title": "Resident Evil: O Hospedeiro",
       "overview": "Alice se junta a sobreviventes para enfrentar a Corporação Umbrella e os zumbis mutantes criados por ela.",
       "company": "Screen Gems",
@@ -31,7 +31,7 @@
       "featured": true,
       "cover": "/caminho/para/exterminio.png"
     },
-    "madrugada_dos_mortos": {
+    "create": {
       "title": "Madrugada dos Mortos",
       "overview": "Um grupo de sobreviventes busca abrigo em um shopping enquanto uma horda de zumbis toma conta da cidade.",
       "company": "Universal Pictures",

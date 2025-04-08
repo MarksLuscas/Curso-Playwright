@@ -10,6 +10,7 @@
   "devDependencies": {
     "@faker-js/faker": "^9.6.0",
     "@playwright/test": "^1.51.1",
-    "@types/node": "^22.13.16"
+    "@types/node": "^22.13.16",
+    "pg": "^8.14.1"
   }
 }
