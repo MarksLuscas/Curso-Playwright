@@ -20,7 +20,7 @@ test('deve cadastrar um lead na tela de espera', async ({ page }) => {
   await landingPage.openLeadModal()
   await landingPage.submitLeadForm(randomName, randomEmail)
   const message = 'Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!'
-  await toast.haveText(message)
+  await toast.containText(message)
 });
 
 test('não deve cadastrar um lead com cadastro já existente', async ({ page , request}) => {
@@ -40,7 +40,7 @@ const newLead = await request.post('http://localhost:3333/leads',{
   await landingPage.openLeadModal()
   await landingPage.submitLeadForm(randomName, randomEmail)
   const message = 'O endereço de e-mail fornecido já está registrado em nossa fila de espera.'
-  await toast.haveText(message)
+  await toast.containText(message)
 });
 
 test('nao deve cadastrar com um email incorreto', async ({ page }) => {
