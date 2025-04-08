@@ -18,6 +18,7 @@ test.beforeEach(({ page }) => {
 test('deve poder cadastrar um novo filme', async ({page}) =>{
     await loginPage.visit()
     await loginPage.fillForms("admin@zombieplus.com", "pwd123")
-    await moviesPage.isLogged();
+    await moviesPage.isLogged()
 
+    await moviesPage.create('Nome do Filme', 'Sinopse', 'Netflix', '1980')
 })
